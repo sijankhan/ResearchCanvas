@@ -1,6 +1,7 @@
 import React from 'react';
 import { Group, Rect, Line, Text } from 'react-konva';
 import { TableCanvasElement } from '../../../types/canvas';
+import { useCanvasStore } from '../../../store/useCanvasStore';
 import Konva from 'konva';
 
 interface Props {
@@ -29,6 +30,7 @@ export const TableElement: React.FC<Props> = React.memo(({
     width,
   } = element;
 
+  const theme = useCanvasStore((s) => s.theme);
   const actualColWidths = colWidths && colWidths.length === cols
     ? colWidths
     : Array(cols).fill(Math.max(80, width / cols));
@@ -56,7 +58,13 @@ export const TableElement: React.FC<Props> = React.memo(({
       <Rect
         width={totalWidth}
         height={totalHeight}
-        fill={style.fillColor || '#181a20'}
+        fill={
+          style.fillColor && style.fillColor !== 'transparent'
+            ? style.fillColor
+            : theme === 'dark'
+              ? '#181a20'
+              : '#ffffff'
+        }
         stroke={style.strokeColor || '#38bdf8'}
         strokeWidth={style.strokeWidth || 1.5}
         cornerRadius={8}
@@ -82,7 +90,7 @@ export const TableElement: React.FC<Props> = React.memo(({
           <Line
             key={`v_line_${colIdx}`}
             points={[curX, 0, curX, totalHeight]}
-            stroke="rgba(255, 255, 255, 0.08)"
+            stroke={theme === 'dark' ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.1)'}
             strokeWidth={1}
           />
         );
@@ -96,7 +104,13 @@ export const TableElement: React.FC<Props> = React.memo(({
           <Line
             key={`h_line_${rIdx}`}
             points={[0, curY, totalWidth, curY]}
-            stroke={rIdx === 0 ? style.strokeColor || '#38bdf8' : 'rgba(255, 255, 255, 0.08)'}
+            stroke={
+              rIdx === 0
+                ? style.strokeColor || '#38bdf8'
+                : theme === 'dark'
+                  ? 'rgba(255, 255, 255, 0.08)'
+                  : 'rgba(15, 23, 42, 0.1)'
+            }
             strokeWidth={rIdx === 0 ? 1.5 : 1}
           />
         );
@@ -138,7 +152,7 @@ export const TableElement: React.FC<Props> = React.memo(({
               text={val}
               fontSize={12}
               fontFamily="Inter"
-              fill="#e2e8f0"
+              fill={theme === 'dark' ? '#e2e8f0' : '#1e293b'}
               wrap="none"
               ellipsis={true}
             />

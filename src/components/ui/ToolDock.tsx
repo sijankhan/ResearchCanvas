@@ -39,7 +39,7 @@ export const ToolDock: React.FC = () => {
 
   return (
     <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-40">
-      <div className="flex items-center gap-1.5 p-1.5 bg-[#1b1d22]/90 backdrop-blur-md border border-white/10 rounded-2xl shadow-floating">
+      <div className="flex items-center gap-1.5 p-1.5 bg-white/90 dark:bg-[#1b1d22]/90 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-2xl shadow-floating">
         {tools.map((item) => {
           const isActive = tool === item.id;
           return (
@@ -49,8 +49,8 @@ export const ToolDock: React.FC = () => {
               title={`${item.label} (${item.hotkey})`}
               className={`relative group flex items-center justify-center w-10 h-10 rounded-xl transition-all duration-150 ${
                 isActive
-                  ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow'
-                  : 'text-slate-400 hover:text-slate-100 hover:bg-white/5 active:scale-95'
+                  ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-white/5 active:scale-95'
               }`}
             >
               {item.icon}

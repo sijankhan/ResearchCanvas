@@ -23,13 +23,13 @@ export const ToastContainer: React.FC = () => {
   const getBorderColor = (type: Toast['type']) => {
     switch (type) {
       case 'success':
-        return 'border-emerald-500/30 bg-[#161d19]/95 text-emerald-200';
+        return 'border-emerald-500/30 bg-emerald-50/95 text-emerald-900 dark:bg-[#161d19]/95 dark:text-emerald-200';
       case 'error':
-        return 'border-rose-500/30 bg-[#201518]/95 text-rose-200';
+        return 'border-rose-500/30 bg-rose-50/95 text-rose-900 dark:bg-[#201518]/95 dark:text-rose-200';
       case 'warning':
-        return 'border-amber-500/30 bg-[#1f1b13]/95 text-amber-200';
+        return 'border-amber-500/30 bg-amber-50/95 text-amber-900 dark:bg-[#1f1b13]/95 dark:text-amber-200';
       default:
-        return 'border-sky-500/30 bg-[#141a22]/95 text-sky-200';
+        return 'border-sky-500/30 bg-sky-50/95 text-sky-900 dark:bg-[#141a22]/95 dark:text-sky-200';
     }
   };
 
@@ -49,7 +49,7 @@ export const ToastContainer: React.FC = () => {
           <button
             onClick={() => removeToast(toast.id)}
             aria-label="Dismiss notification"
-            className="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+            className="p-1 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
           >
             <X className="w-3.5 h-3.5" />
           </button>

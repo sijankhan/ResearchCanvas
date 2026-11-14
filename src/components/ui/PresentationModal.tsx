@@ -52,7 +52,7 @@ export const PresentationModal: React.FC = () => {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-[#0c0d0f] flex flex-col justify-between select-none animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 bg-slate-50 dark:bg-[#0c0d0f] flex flex-col justify-between select-none animate-in fade-in duration-200 transition-colors"
       onMouseMove={(e) => {
         if (isLaserActive) {
           setLaserPointer({ x: e.clientX, y: e.clientY });
@@ -60,17 +60,17 @@ export const PresentationModal: React.FC = () => {
       }}
     >
       {/* Top Presenter Bar */}
-      <div className="flex items-center justify-between p-4 bg-black/40 backdrop-blur-md border-b border-white/10 z-50">
+      <div className="flex items-center justify-between p-4 bg-white/80 dark:bg-black/40 backdrop-blur-md border-b border-slate-200 dark:border-white/10 z-50">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-sky-400" />
-            <span className="font-semibold text-sm text-white">
+            <Sparkles className="w-5 h-5 text-sky-500 dark:text-sky-400" />
+            <span className="font-semibold text-sm text-slate-900 dark:text-white">
               {project.title}
             </span>
           </div>
-          <span className="text-white/20">|</span>
-          <span className="text-xs text-slate-300 font-medium">
-            Slide {currentIndex + 1} of {boards.length}: <span className="text-sky-300 font-semibold">{activeBoard.title}</span>
+          <span className="text-slate-300 dark:text-white/20">|</span>
+          <span className="text-xs text-slate-600 dark:text-slate-300 font-medium">
+            Slide {currentIndex + 1} of {boards.length}: <span className="text-sky-600 dark:text-sky-300 font-semibold">{activeBoard.title}</span>
           </span>
         </div>
 
@@ -83,8 +83,8 @@ export const PresentationModal: React.FC = () => {
             }}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-colors ${
               isLaserActive
-                ? 'bg-red-500/20 text-red-400 border border-red-500/40'
-                : 'bg-white/5 text-slate-300 hover:text-white hover:bg-white/10'
+                ? 'bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/40'
+                : 'bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-white/10'
             }`}
           >
             <Radio className="w-3.5 h-3.5" />
@@ -94,7 +94,7 @@ export const PresentationModal: React.FC = () => {
           {/* Close / Exit Button */}
           <button
             onClick={() => setPresentationOpen(false)}
-            className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors text-xs font-medium"
+            className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-medium"
           >
             <X className="w-4 h-4" />
             <span>Exit (Esc)</span>
@@ -104,13 +104,13 @@ export const PresentationModal: React.FC = () => {
 
       {/* Central Viewport Note Indicator */}
       <div className="flex-1 relative flex items-center justify-center pointer-events-none p-12">
-        <div className="text-center space-y-2 max-w-xl p-8 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-md">
-          <div className="flex items-center justify-center gap-2 text-sky-400 font-medium text-xs">
+        <div className="text-center space-y-2 max-w-xl p-8 rounded-3xl bg-white/80 dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 shadow-sm dark:shadow-none backdrop-blur-md">
+          <div className="flex items-center justify-center gap-2 text-sky-600 dark:text-sky-400 font-medium text-xs">
             <Layers className="w-4 h-4" />
             <span>Presenting Board {currentIndex + 1}</span>
           </div>
-          <h2 className="text-2xl font-bold text-white">{activeBoard.title}</h2>
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{activeBoard.title}</h2>
+          <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
             {activeBoard.description || 'Focus on the interconnected diagrams and evidence.'}
           </p>
           <div className="pt-2 text-[11px] text-slate-500 font-mono">
@@ -128,13 +128,13 @@ export const PresentationModal: React.FC = () => {
       )}
 
       {/* Bottom Navigation Controls */}
-      <div className="flex items-center justify-between p-4 bg-black/40 backdrop-blur-md border-t border-white/10 z-50">
+      <div className="flex items-center justify-between p-4 bg-white/80 dark:bg-black/40 backdrop-blur-md border-t border-slate-200 dark:border-white/10 z-50">
         <button
           onClick={() => {
             if (currentIndex > 0) setActiveBoard(boards[currentIndex - 1].id);
           }}
           disabled={currentIndex === 0}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white disabled:opacity-20 disabled:pointer-events-none transition-colors text-xs font-medium"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white disabled:opacity-20 disabled:pointer-events-none transition-colors text-xs font-medium"
         >
           <ChevronLeft className="w-4 h-4" />
           <span>Previous Slide</span>
@@ -147,7 +147,7 @@ export const PresentationModal: React.FC = () => {
               key={b.id}
               onClick={() => setActiveBoard(b.id)}
               className={`h-2.5 rounded-full transition-all ${
-                idx === currentIndex ? 'w-8 bg-sky-400' : 'w-2.5 bg-white/20 hover:bg-white/40'
+                idx === currentIndex ? 'w-8 bg-sky-500 dark:bg-sky-400' : 'w-2.5 bg-slate-300 dark:bg-white/20 hover:bg-slate-400 dark:hover:bg-white/40'
               }`}
             />
           ))}
@@ -158,7 +158,7 @@ export const PresentationModal: React.FC = () => {
             if (currentIndex < boards.length - 1) setActiveBoard(boards[currentIndex + 1].id);
           }}
           disabled={currentIndex === boards.length - 1}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold disabled:opacity-20 disabled:pointer-events-none transition-colors text-xs"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-white dark:text-slate-950 font-semibold disabled:opacity-20 disabled:pointer-events-none transition-colors text-xs"
         >
           <span>Next Slide</span>
           <ChevronRight className="w-4 h-4" />

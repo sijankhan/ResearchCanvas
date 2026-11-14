@@ -120,7 +120,7 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 bg-[#181a20]/95 backdrop-blur-xl border-b border-white/10 z-40 flex items-center justify-between px-4 select-none">
+    <header className="fixed top-0 left-0 right-0 h-16 bg-white/95 dark:bg-[#181a20]/95 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 z-40 flex items-center justify-between px-4 select-none transition-colors duration-200">
       {/* Left: Brand, Projects Manager & Title */}
       <div className="flex items-center gap-3">
         {/* Logo */}
@@ -129,24 +129,24 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <div>
-            <span className="font-bold text-sm tracking-tight text-white block leading-none">
+            <span className="font-bold text-sm tracking-tight text-slate-900 dark:text-white block leading-none">
               ResearchCanvas
             </span>
-            <span className="text-[10px] text-sky-400 font-mono tracking-wider">
+            <span className="text-[10px] text-sky-600 dark:text-sky-400 font-mono tracking-wider">
               STUDIO 2.0
             </span>
           </div>
         </div>
 
-        <div className="h-5 w-[1px] bg-white/10 mx-1" />
+        <div className="h-5 w-[1px] bg-slate-200 dark:bg-white/10 mx-1" />
 
         {/* Projects Dashboard Button */}
         <button
           onClick={() => setProjectsDashboardOpen(true)}
           title="Open Projects Dashboard"
-          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white border border-white/5 transition-colors text-xs"
+          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-100/80 dark:bg-white/[0.03] hover:bg-slate-200/80 dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/5 transition-colors text-xs"
         >
-          <FolderKanban className="w-3.5 h-3.5 text-sky-400" />
+          <FolderKanban className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400" />
           <span className="hidden sm:inline font-medium">Projects</span>
         </button>
 
@@ -165,13 +165,13 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
               }
             }}
             autoFocus
-            className="bg-black/40 border border-sky-500/60 rounded-lg px-2.5 py-1 text-xs text-white outline-none w-48 sm:w-72 font-medium"
+            className="bg-slate-100 dark:bg-black/40 border border-sky-500/60 rounded-lg px-2.5 py-1 text-xs text-slate-900 dark:text-white outline-none w-48 sm:w-72 font-medium"
           />
         ) : (
           <button
             onClick={() => setIsEditingTitle(true)}
             title="Click to rename project"
-            className="text-xs font-semibold text-slate-200 hover:text-white px-2 py-1 rounded-lg hover:bg-white/5 transition-colors truncate max-w-[140px] sm:max-w-[260px]"
+            className="text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white px-2 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-white/5 transition-colors truncate max-w-[140px] sm:max-w-[260px]"
           >
             {project.title}
           </button>
@@ -206,12 +206,12 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
       {/* Center: Undo / Redo & Zoom Controls */}
       <div className="flex items-center gap-1.5">
         {/* Undo / Redo */}
-        <div className="flex items-center bg-white/[0.03] border border-white/5 p-1 rounded-xl">
+        <div className="flex items-center bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 p-1 rounded-xl">
           <button
             onClick={undo}
             disabled={!canUndo()}
             title="Undo (Ctrl+Z)"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-25 disabled:pointer-events-none transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-white/10 disabled:opacity-25 disabled:pointer-events-none transition-colors"
           >
             <Undo2 className="w-4 h-4" />
           </button>
@@ -219,39 +219,39 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
             onClick={redo}
             disabled={!canRedo()}
             title="Redo (Ctrl+Y)"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 disabled:opacity-25 disabled:pointer-events-none transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-white/10 disabled:opacity-25 disabled:pointer-events-none transition-colors"
           >
             <Redo2 className="w-4 h-4" />
           </button>
         </div>
 
         {/* Zoom */}
-        <div className="flex items-center bg-white/[0.03] border border-white/5 p-1 rounded-xl text-xs">
+        <div className="flex items-center bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 p-1 rounded-xl text-xs">
           <button
             onClick={zoomOut}
             title="Zoom Out (-)"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-white/10 transition-colors"
           >
             <ZoomOut className="w-4 h-4" />
           </button>
           <button
             onClick={zoomTo100}
             title="Reset Zoom to 100%"
-            className="px-2 py-0.5 font-mono text-[11px] text-slate-300 hover:text-sky-400"
+            className="px-2 py-0.5 font-mono text-[11px] text-slate-700 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400"
           >
             {Math.round(camera.zoom * 100)}%
           </button>
           <button
             onClick={zoomIn}
             title="Zoom In (+)"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-white/10 transition-colors"
           >
             <ZoomIn className="w-4 h-4" />
           </button>
           <button
             onClick={() => zoomToFit(window.innerWidth, window.innerHeight)}
             title="Zoom to Fit Elements"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/70 dark:hover:bg-white/10 transition-colors"
           >
             <Maximize className="w-4 h-4" />
           </button>
@@ -264,18 +264,19 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
         <button
           onClick={toggleTheme}
           title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Theme`}
-          className="p-2 rounded-xl bg-white/[0.03] hover:bg-white/10 text-slate-400 hover:text-white border border-white/5 transition-colors"
+          aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Theme`}
+          className="p-2 rounded-xl bg-slate-100/80 dark:bg-white/[0.03] hover:bg-slate-200/80 dark:hover:bg-white/10 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/5 transition-colors"
         >
-          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-sky-400" />}
+          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-sky-600" />}
         </button>
 
         {/* Presentation Mode Button */}
         <button
           onClick={() => setPresentationOpen(true)}
           title="Enter Presentation Mode (F5)"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.03] hover:bg-white/10 text-slate-300 hover:text-white border border-white/5 transition-colors text-xs font-medium"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/80 dark:bg-white/[0.03] hover:bg-slate-200/80 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/5 transition-colors text-xs font-medium"
         >
-          <Play className="w-3.5 h-3.5 text-emerald-400 fill-emerald-400" />
+          <Play className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400 fill-emerald-500 dark:fill-emerald-400" />
           <span className="hidden md:inline">Present</span>
         </button>
 
@@ -283,9 +284,9 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
         <button
           onClick={() => setShareModalOpen(true)}
           title="Share Project / Access Permissions"
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.03] hover:bg-white/10 text-slate-300 hover:text-white border border-white/5 transition-colors text-xs font-medium"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100/80 dark:bg-white/[0.03] hover:bg-slate-200/80 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/5 transition-colors text-xs font-medium"
         >
-          <Share2 className="w-3.5 h-3.5 text-indigo-400" />
+          <Share2 className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
           <span className="hidden md:inline">Share</span>
         </button>
 
@@ -295,8 +296,8 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
           title="Toggle AI Studio Assistant"
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all shadow-glow ${
             isAiStudioOpen
-              ? 'bg-sky-500 text-slate-950 font-semibold'
-              : 'bg-gradient-to-r from-sky-500/20 via-indigo-500/20 to-purple-500/20 text-sky-300 border border-sky-500/40 hover:bg-sky-500/30'
+              ? 'bg-sky-500 text-white dark:text-slate-950 font-semibold'
+              : 'bg-gradient-to-r from-sky-500/15 via-indigo-500/15 to-purple-500/15 dark:from-sky-500/20 dark:via-indigo-500/20 dark:to-purple-500/20 text-sky-700 dark:text-sky-300 border border-sky-500/40 hover:bg-sky-500/25 dark:hover:bg-sky-500/30'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -308,22 +309,22 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
           <button
             onClick={() => setShowExportMenu(!showExportMenu)}
             title="Export Canvas / Project"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/40 transition-colors text-xs font-medium"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-500/15 dark:bg-sky-500/20 hover:bg-sky-500/25 dark:hover:bg-sky-500/30 text-sky-700 dark:text-sky-300 border border-sky-500/40 transition-colors text-xs font-medium"
           >
-            <Download className="w-3.5 h-3.5 text-sky-400" />
+            <Download className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
             <span className="hidden sm:inline">Export</span>
           </button>
 
           {showExportMenu && (
-            <div className="absolute right-0 top-11 w-52 bg-[#1b1d22]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-floating p-1.5 flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-100">
+            <div className="absolute right-0 top-11 w-52 bg-white/95 dark:bg-[#1b1d22]/95 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-2xl shadow-floating p-1.5 flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-100">
               <button
                 onClick={() => {
                   exportToPng(elements, project.title);
                   setShowExportMenu(false);
                 }}
-                className="flex items-center gap-2.5 px-3 py-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors text-left"
+                className="flex items-center gap-2.5 px-3 py-2 text-xs text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-colors text-left"
               >
-                <ImageIcon className="w-4 h-4 text-sky-400" />
+                <ImageIcon className="w-4 h-4 text-sky-500 dark:text-sky-400" />
                 <span>Export as PNG</span>
               </button>
               <button
@@ -331,12 +332,12 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
                   exportProjectToJson(project);
                   setShowExportMenu(false);
                 }}
-                className="flex items-center gap-2.5 px-3 py-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors text-left"
+                className="flex items-center gap-2.5 px-3 py-2 text-xs text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-colors text-left"
               >
-                <FileCode className="w-4 h-4 text-emerald-400" />
+                <FileCode className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
                 <span>Export Project JSON</span>
               </button>
-              <div className="h-[1px] bg-white/10 my-0.5" />
+              <div className="h-[1px] bg-slate-200 dark:bg-white/10 my-0.5" />
               <button
                 onClick={async () => {
                   setShowExportMenu(false);
@@ -372,12 +373,12 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
                     fileInputRef.current?.click();
                   }
                 }}
-                className="flex items-center gap-2.5 px-3 py-2 text-xs text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-colors text-left"
+                className="flex items-center gap-2.5 px-3 py-2 text-xs text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 rounded-xl transition-colors text-left"
               >
-                <Upload className="w-4 h-4 text-purple-400" />
+                <Upload className="w-4 h-4 text-purple-500 dark:text-purple-400" />
                 <span>Import JSON Project</span>
               </button>
-              <div className="h-[1px] bg-white/10 my-0.5" />
+              <div className="h-[1px] bg-slate-200 dark:bg-white/10 my-0.5" />
               <button
                 onClick={() => {
                   setShowExportMenu(false);
@@ -389,7 +390,7 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
                     onConfirm: () => clearCanvas(),
                   });
                 }}
-                className="flex items-center gap-2.5 px-3 py-2 text-xs text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition-colors text-left"
+                className="flex items-center gap-2.5 px-3 py-2 text-xs text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition-colors text-left"
               >
                 <Trash2 className="w-4 h-4" />
                 <span>Clear Active Board</span>
@@ -409,7 +410,7 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
         <button
           onClick={onOpenShortcuts}
           title="Keyboard Shortcuts (?)"
-          className="p-2 rounded-xl bg-white/[0.03] hover:bg-white/10 text-slate-400 hover:text-sky-400 border border-white/5 transition-colors"
+          className="p-2 rounded-xl bg-slate-100/80 dark:bg-white/[0.03] hover:bg-slate-200/80 dark:hover:bg-white/10 text-slate-500 dark:text-slate-400 hover:text-sky-600 dark:hover:text-sky-400 border border-slate-200 dark:border-white/5 transition-colors"
         >
           <HelpCircle className="w-4 h-4" />
         </button>

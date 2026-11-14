@@ -1,12 +1,13 @@
 import React from 'react';
 import { Shape } from 'react-konva';
-import { Camera, GridType } from '../../types/canvas';
+import { Camera, GridType, ThemeType } from '../../types/canvas';
 
 interface Props {
   width: number;
   height: number;
   camera: Camera;
   gridType: GridType;
+  theme?: ThemeType;
 }
 
 export const InfiniteGrid: React.FC<Props> = ({
@@ -14,6 +15,7 @@ export const InfiniteGrid: React.FC<Props> = ({
   height,
   camera,
   gridType,
+  theme = 'dark',
 }) => {
   if (gridType === 'none') return null;
 
@@ -35,7 +37,7 @@ export const InfiniteGrid: React.FC<Props> = ({
         context.beginPath();
 
         if (gridType === 'dots') {
-          context.fillStyle = 'rgba(255, 255, 255, 0.12)';
+          context.fillStyle = theme === 'dark' ? 'rgba(255, 255, 255, 0.12)' : 'rgba(15, 23, 42, 0.18)';
           const dotRadius = Math.max(1, 1.2 * Math.min(1.5, Math.max(0.6, zoom)));
 
           for (let gx = offsetX; gx < width; gx += step) {
@@ -46,7 +48,7 @@ export const InfiniteGrid: React.FC<Props> = ({
           }
           context.fill();
         } else if (gridType === 'lines') {
-          context.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+          context.strokeStyle = theme === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(15, 23, 42, 0.08)';
           context.lineWidth = 1;
 
           for (let gx = offsetX; gx < width; gx += step) {

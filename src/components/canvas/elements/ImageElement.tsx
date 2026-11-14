@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Group, Rect, Image as KonvaImage, Text, Circle } from 'react-konva';
 import { ImageCanvasElement } from '../../../types/canvas';
 import { getImage, getCachedImage } from '../../../services/imageStore';
+import { useCanvasStore } from '../../../store/useCanvasStore';
 import Konva from 'konva';
 
 interface Props {
@@ -20,6 +21,8 @@ export const ImageElement: React.FC<Props> = React.memo(({
 }) => {
   const [imageObj, setImageObj] = useState<HTMLImageElement | null>(null);
   const [activePinId, setActivePinId] = useState<string | null>(null);
+  const theme = useCanvasStore((state) => state.theme);
+  const isDark = theme === 'dark';
 
   useEffect(() => {
     let isCancelled = false;
@@ -81,13 +84,13 @@ export const ImageElement: React.FC<Props> = React.memo(({
       <Rect
         width={width}
         height={totalHeight}
-        fill="#181a20"
-        stroke={style.strokeColor || '#2e323b'}
+        fill={isDark ? '#181a20' : '#ffffff'}
+        stroke={style.strokeColor || (isDark ? '#2e323b' : '#cbd5e1')}
         strokeWidth={style.strokeWidth || 1.5}
         cornerRadius={8}
         shadowColor="black"
         shadowBlur={16}
-        shadowOpacity={0.25}
+        shadowOpacity={isDark ? 0.25 : 0.12}
         shadowOffset={{ x: 0, y: 6 }}
       />
 
@@ -107,7 +110,7 @@ export const ImageElement: React.FC<Props> = React.memo(({
           <Rect
             width={width}
             height={captionHeight}
-            fill="#121316"
+            fill={isDark ? '#121316' : '#f1f5f9'}
             cornerRadius={[0, 0, 8, 8]}
           />
           <Text
@@ -117,7 +120,7 @@ export const ImageElement: React.FC<Props> = React.memo(({
             text={caption}
             fontSize={12}
             fontFamily="Inter"
-            fill="#94a3b8"
+            fill={isDark ? '#94a3b8' : '#475569'}
             fontStyle="italic"
             ellipsis={true}
             wrap="none"

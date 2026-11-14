@@ -72,14 +72,14 @@ export const LeftToolbar: React.FC = () => {
   const isShapeTool = ['rectangle', 'circle', 'diamond', 'polygon', 'callout'].includes(tool);
 
   return (
-    <aside className="fixed left-4 top-20 z-40 flex flex-col items-center gap-1.5 p-2 bg-[#181a20]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-floating select-none">
+    <aside className="fixed left-4 top-20 z-40 flex flex-col items-center gap-1.5 p-2 bg-white/95 dark:bg-[#181a20]/95 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-2xl shadow-floating select-none transition-colors duration-200">
       {/* 1. Select */}
       <button
         onClick={() => setTool('select')}
         title="Select & Move (V)"
         aria-label="Select & Move tool (V)"
         className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-          tool === 'select' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+          tool === 'select' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
         }`}
       >
         <MousePointer2 className="w-5 h-5" />
@@ -91,13 +91,13 @@ export const LeftToolbar: React.FC = () => {
         title="Pan Canvas (H / Space+Drag)"
         aria-label="Pan Canvas tool (H)"
         className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-          tool === 'hand' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+          tool === 'hand' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
         }`}
       >
         <Hand className="w-5 h-5" />
       </button>
 
-      <div className="w-6 h-[1px] bg-white/10 my-0.5" />
+      <div className="w-6 h-[1px] bg-slate-200 dark:bg-white/10 my-0.5" />
 
       {/* 3. Drawing Brushes with Flyout */}
       <div className="relative">
@@ -112,23 +112,23 @@ export const LeftToolbar: React.FC = () => {
           title={`Brush: ${brushType.toUpperCase()} (Click to toggle flyout)`}
           aria-label={`Drawing brush tool (${brushType})`}
           className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-            isDrawingTool ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+            isDrawingTool ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
           }`}
         >
           {brushType === 'pen' && <PenTool className="w-5 h-5" />}
           {brushType === 'pencil' && <Pencil className="w-5 h-5" />}
           {brushType === 'marker' && <PenTool className="w-5 h-5 stroke-[2.5]" />}
-          {brushType === 'highlighter' && <Highlighter className="w-5 h-5 text-amber-400" />}
-          <span className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-sky-400 rounded-full" />
+          {brushType === 'highlighter' && <Highlighter className="w-5 h-5 text-amber-500 dark:text-amber-400" />}
+          <span className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full" />
         </button>
 
         {showBrushFlyout && (
-          <div className="absolute left-12 top-0 w-36 bg-[#1b1d22]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-floating p-1.5 flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-100">
+          <div className="absolute left-12 top-0 w-36 bg-white/95 dark:bg-[#1b1d22]/95 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-2xl shadow-floating p-1.5 flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-100">
             <button
               onClick={() => handleBrushSelect('pen')}
               aria-label="Select Vector Pen brush"
               className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
-                brushType === 'pen' ? 'bg-sky-500/20 text-sky-400' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                brushType === 'pen' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
               }`}
             >
               <PenTool className="w-4 h-4" />
@@ -138,7 +138,7 @@ export const LeftToolbar: React.FC = () => {
               onClick={() => handleBrushSelect('pencil')}
               aria-label="Select Pencil brush"
               className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
-                brushType === 'pencil' ? 'bg-sky-500/20 text-sky-400' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                brushType === 'pencil' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
               }`}
             >
               <Pencil className="w-4 h-4" />
@@ -148,10 +148,10 @@ export const LeftToolbar: React.FC = () => {
               onClick={() => handleBrushSelect('highlighter')}
               aria-label="Select Highlighter brush"
               className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
-                brushType === 'highlighter' ? 'bg-sky-500/20 text-sky-400' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                brushType === 'highlighter' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
               }`}
             >
-              <Highlighter className="w-4 h-4 text-amber-400" />
+              <Highlighter className="w-4 h-4 text-amber-500 dark:text-amber-400" />
               <span>Highlighter</span>
             </button>
           </div>
@@ -164,13 +164,13 @@ export const LeftToolbar: React.FC = () => {
         title="Eraser (E) - Click objects to erase"
         aria-label="Eraser tool (E)"
         className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-          tool === 'eraser' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+          tool === 'eraser' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
         }`}
       >
         <Eraser className="w-5 h-5" />
       </button>
 
-      <div className="w-6 h-[1px] bg-white/10 my-0.5" />
+      <div className="w-6 h-[1px] bg-slate-200 dark:bg-white/10 my-0.5" />
 
       {/* 5. Text */}
       <button
@@ -178,7 +178,7 @@ export const LeftToolbar: React.FC = () => {
         title="Text Block (T)"
         aria-label="Text tool (T)"
         className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-          tool === 'text' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+          tool === 'text' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
         }`}
       >
         <Type className="w-5 h-5" />
@@ -189,7 +189,7 @@ export const LeftToolbar: React.FC = () => {
         onClick={() => fileInputRef.current?.click()}
         title="Insert Image (Upload or Paste Ctrl+V)"
         aria-label="Upload or paste image"
-        className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+        className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
       >
         <ImageIcon className="w-5 h-5" />
       </button>
@@ -214,7 +214,7 @@ export const LeftToolbar: React.FC = () => {
           title="Shapes (Click to choose shape)"
           aria-label="Shapes selection menu"
           className={`relative w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-            isShapeTool ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+            isShapeTool ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
           }`}
         >
           {tool === 'circle' && <Circle className="w-5 h-5" />}
@@ -222,16 +222,16 @@ export const LeftToolbar: React.FC = () => {
           {tool === 'polygon' && <Hexagon className="w-5 h-5" />}
           {tool === 'callout' && <MessageSquare className="w-5 h-5" />}
           {(!isShapeTool || tool === 'rectangle') && <Square className="w-5 h-5" />}
-          <span className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-sky-400 rounded-full" />
+          <span className="absolute bottom-1 right-1 w-1.5 h-1.5 bg-sky-500 dark:bg-sky-400 rounded-full" />
         </button>
 
         {showShapesFlyout && (
-          <div className="absolute left-12 top-0 w-36 bg-[#1b1d22]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-floating p-1.5 flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-100">
+          <div className="absolute left-12 top-0 w-36 bg-white/95 dark:bg-[#1b1d22]/95 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-2xl shadow-floating p-1.5 flex flex-col gap-1 z-50 animate-in fade-in zoom-in-95 duration-100">
             <button
               onClick={() => handleShapeSelect('rectangle')}
               aria-label="Rectangle shape"
               className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
-                tool === 'rectangle' ? 'bg-sky-500/20 text-sky-400' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                tool === 'rectangle' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
               }`}
             >
               <Square className="w-4 h-4" />
@@ -241,7 +241,7 @@ export const LeftToolbar: React.FC = () => {
               onClick={() => handleShapeSelect('circle')}
               aria-label="Circle shape"
               className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
-                tool === 'circle' ? 'bg-sky-500/20 text-sky-400' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                tool === 'circle' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
               }`}
             >
               <Circle className="w-4 h-4" />
@@ -251,7 +251,7 @@ export const LeftToolbar: React.FC = () => {
               onClick={() => handleShapeSelect('diamond')}
               aria-label="Diamond shape"
               className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
-                tool === 'diamond' ? 'bg-sky-500/20 text-sky-400' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                tool === 'diamond' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
               }`}
             >
               <Diamond className="w-4 h-4" />
@@ -261,7 +261,7 @@ export const LeftToolbar: React.FC = () => {
               onClick={() => handleShapeSelect('polygon')}
               aria-label="Polygon shape"
               className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
-                tool === 'polygon' ? 'bg-sky-500/20 text-sky-400' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                tool === 'polygon' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
               }`}
             >
               <Hexagon className="w-4 h-4" />
@@ -271,7 +271,7 @@ export const LeftToolbar: React.FC = () => {
               onClick={() => handleShapeSelect('callout')}
               aria-label="Callout shape"
               className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-xs transition-colors ${
-                tool === 'callout' ? 'bg-sky-500/20 text-sky-400' : 'text-slate-300 hover:text-white hover:bg-white/5'
+                tool === 'callout' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400' : 'text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
               }`}
             >
               <MessageSquare className="w-4 h-4" />
@@ -287,7 +287,7 @@ export const LeftToolbar: React.FC = () => {
         title="Arrow Connector (A)"
         aria-label="Arrow Connector (A)"
         className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-          tool === 'arrow' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+          tool === 'arrow' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
         }`}
       >
         <MoveRight className="w-5 h-5" />
@@ -299,7 +299,7 @@ export const LeftToolbar: React.FC = () => {
         title="Smart Magnetic Connector (Snaps between shapes)"
         aria-label="Smart Magnetic Connector"
         className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-          tool === 'connector' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+          tool === 'connector' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
         }`}
       >
         <GitCommit className="w-5 h-5" />
@@ -311,7 +311,7 @@ export const LeftToolbar: React.FC = () => {
         title="Research Sticky Note (S)"
         aria-label="Sticky Note (S)"
         className={`w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${
-          tool === 'sticky' ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-400 hover:text-white hover:bg-white/5'
+          tool === 'sticky' ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40 shadow-glow' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5'
         }`}
       >
         <StickyNote className="w-5 h-5" />
@@ -322,7 +322,7 @@ export const LeftToolbar: React.FC = () => {
         onClick={() => addTableElement(3, 4)}
         title="Insert Research Matrix Table"
         aria-label="Insert Research Matrix Table"
-        className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/5 transition-colors"
+        className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-colors"
       >
         <TableIcon className="w-5 h-5" />
       </button>

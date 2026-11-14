@@ -66,7 +66,7 @@ export const InlineTextEditor: React.FC<Props> = ({
         className={`w-full h-full p-3 resize-none border-2 rounded-lg outline-none shadow-2xl transition-all ${
           isSticky
             ? 'bg-[#fef9c3] text-slate-900 border-amber-400 font-sans'
-            : 'bg-[#18191e]/95 text-slate-100 border-sky-500 font-sans'
+            : 'bg-white/95 text-slate-900 dark:bg-[#18191e]/95 dark:text-slate-100 border-sky-500 font-sans'
         }`}
         style={{
           fontSize: `${fontSize}px`,
@@ -75,8 +75,8 @@ export const InlineTextEditor: React.FC<Props> = ({
         }}
         placeholder="Type note or text here..."
       />
-      <div className="absolute -bottom-6 left-0 text-[10px] text-slate-400 bg-slate-900/80 px-2 py-0.5 rounded backdrop-blur">
-        Press <span className="font-mono text-sky-400">Esc</span> or click outside to finish
+      <div className="absolute -bottom-6 left-0 text-[10px] text-slate-600 dark:text-slate-400 bg-white/90 dark:bg-slate-900/80 border border-slate-200 dark:border-transparent px-2 py-0.5 rounded backdrop-blur">
+        Press <span className="font-mono text-sky-600 dark:text-sky-400">Esc</span> or click outside to finish
       </div>
     </div>
   );

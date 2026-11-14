@@ -73,9 +73,9 @@ export const MiniMap: React.FC = () => {
     <div
       ref={containerRef}
       onClick={handleMiniMapClick}
-      className="relative w-[190px] h-[125px] bg-[#181a20]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-floating overflow-hidden cursor-crosshair select-none animate-in fade-in duration-150"
+      className="relative w-[190px] h-[125px] bg-white/95 dark:bg-[#181a20]/95 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-2xl shadow-floating overflow-hidden cursor-crosshair select-none animate-in fade-in duration-150 transition-colors duration-200"
     >
-      <div className="absolute top-2 left-2.5 z-10 text-[9px] font-mono uppercase tracking-wider text-slate-400 bg-black/40 px-1.5 py-0.5 rounded border border-white/5 pointer-events-none">
+      <div className="absolute top-2 left-2.5 z-10 text-[9px] font-mono uppercase tracking-wider text-slate-600 dark:text-slate-400 bg-slate-100/90 dark:bg-black/40 px-1.5 py-0.5 rounded border border-slate-200 dark:border-white/5 pointer-events-none">
         Radar
       </div>
 

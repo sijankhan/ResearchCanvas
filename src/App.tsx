@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useCanvasStore } from './store/useCanvasStore';
 import { CanvasStage } from './components/canvas/CanvasStage';
 import { TopBar } from './components/ui/TopBar';
 import { LeftToolbar } from './components/ui/LeftToolbar';
@@ -19,6 +20,15 @@ export const App: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isShortcutsOpen, setIsShortcutsOpen] = useState(false);
   const [isMiniMapOpen, setIsMiniMapOpen] = useState(true);
+  const theme = useCanvasStore((s) => s.theme);
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
 
   useKeyboardShortcuts({
     onToggleShortcuts: () => setIsShortcutsOpen((prev) => !prev),
@@ -26,7 +36,7 @@ export const App: React.FC = () => {
 
   return (
     <ErrorBoundary>
-      <div className="relative w-screen h-screen overflow-hidden bg-[#121316] text-slate-100 font-sans select-none">
+      <div className="relative w-screen h-screen overflow-hidden bg-slate-50 text-slate-900 dark:bg-[#121316] dark:text-slate-100 font-sans select-none transition-colors duration-200">
         {/* 1. Top Command Bar */}
         <TopBar onOpenShortcuts={() => setIsShortcutsOpen(true)} />
 

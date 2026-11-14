@@ -1,6 +1,7 @@
 import React from 'react';
 import { Group, Rect, Line, Text } from 'react-konva';
 import { CalloutCanvasElement } from '../../../types/canvas';
+import { useCanvasStore } from '../../../store/useCanvasStore';
 import Konva from 'konva';
 
 interface Props {
@@ -20,6 +21,7 @@ export const CalloutElement: React.FC<Props> = React.memo(({
   onChange,
 }) => {
   const { width, height, text, style, pointerOffsetX = -30, pointerOffsetY = 20 } = element;
+  const theme = useCanvasStore((s) => s.theme);
   const isDashed = style.strokeStyle === 'dashed';
 
   // Triangle pointer points
@@ -76,7 +78,7 @@ export const CalloutElement: React.FC<Props> = React.memo(({
         text={text}
         fontSize={style.fontSize || 14}
         fontFamily={style.fontFamily || 'Inter'}
-        fill="#f8fafc"
+        fill={theme === 'dark' ? '#f8fafc' : '#0f172a'}
         wrap="word"
         lineHeight={1.4}
       />

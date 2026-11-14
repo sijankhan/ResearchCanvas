@@ -383,7 +383,18 @@ function initProjects(): {
   };
 }
 
+function applyThemeClass(theme: ThemeType) {
+  if (typeof document !== 'undefined') {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }
+}
+
 const initialData = initProjects();
+applyThemeClass(initialData.project.theme || 'dark');
 
 export const useCanvasStore = create<CanvasState>((set, get) => ({
   project: initialData.project,
@@ -431,11 +442,7 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
 
   toggleTheme: () => {
     const nextTheme: ThemeType = get().theme === 'dark' ? 'light' : 'dark';
-    if (nextTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    applyThemeClass(nextTheme);
     const updated = { ...get().project, theme: nextTheme };
     set({ theme: nextTheme, project: updated });
     scheduleSave();
@@ -675,8 +682,12 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     });
     const nextCamera = nextCameras[nextActiveBoardId] || { x: 80, y: 80, zoom: 1 };
 
+    const nextTheme = loaded.theme || 'dark';
+    applyThemeClass(nextTheme);
+
     set({
       project: loaded,
+      theme: nextTheme,
       activeBoardId: nextActiveBoardId,
       selectedIds: [],
       camera: nextCamera,
@@ -785,8 +796,12 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       nextCameras[b.id] = b.camera || { x: 80, y: 80, zoom: 1 };
     });
 
+    const nextTheme = loadedProject.theme || 'dark';
+    applyThemeClass(nextTheme);
+
     set({
       project: loadedProject,
+      theme: nextTheme,
       activeBoardId: nextActiveBoardId,
       selectedIds: [],
       cameras: nextCameras,

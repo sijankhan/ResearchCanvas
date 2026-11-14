@@ -44,6 +44,7 @@ export const CanvasStage: React.FC<Props> = ({ containerRef }) => {
   const brushType = useCanvasStore((s) => s.brushType);
   const activeStyle = useCanvasStore((s) => s.activeStyle);
   const editingTextId = useCanvasStore((s) => s.editingTextId);
+  const theme = useCanvasStore((s) => s.theme);
 
   const setTool = useCanvasStore((s) => s.setTool);
   const panBy = useCanvasStore((s) => s.panBy);
@@ -718,7 +719,7 @@ export const CanvasStage: React.FC<Props> = ({ containerRef }) => {
 
   return (
     <div
-      className="relative w-full h-full overflow-hidden select-none bg-[#121316]"
+      className="relative w-full h-full overflow-hidden select-none bg-slate-50 dark:bg-[#121316] transition-colors duration-200"
       style={{ cursor: getCursor() }}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
@@ -727,7 +728,7 @@ export const CanvasStage: React.FC<Props> = ({ containerRef }) => {
       <button
         onClick={handleStressTest}
         title="Add 2,000 vector shapes to stress test viewport culling and rendering performance"
-        className="fixed top-20 right-[340px] z-30 flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[11px] font-mono shadow-sm transition-colors"
+        className="fixed top-20 right-[340px] z-30 flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/15 dark:bg-amber-500/10 hover:bg-amber-500/25 dark:hover:bg-amber-500/20 text-amber-700 dark:text-amber-400 border border-amber-500/30 text-[11px] font-mono shadow-sm transition-colors"
       >
         <Zap className="w-3.5 h-3.5" />
         <span>Stress Test (2,000 Shapes)</span>
@@ -752,6 +753,7 @@ export const CanvasStage: React.FC<Props> = ({ containerRef }) => {
             height={dimensions.height}
             camera={camera}
             gridType={gridType}
+            theme={theme}
           />
         </Layer>
 

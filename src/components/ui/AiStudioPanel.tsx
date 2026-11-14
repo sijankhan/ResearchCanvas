@@ -462,27 +462,27 @@ export const AiStudioPanel: React.FC = () => {
   };
 
   return (
-    <div className="fixed right-0 top-16 bottom-14 w-96 bg-[#181a20]/95 backdrop-blur-xl border-l border-white/10 z-40 flex flex-col shadow-floating animate-in slide-in-from-right duration-200">
+    <div className="fixed right-0 top-16 bottom-14 w-96 bg-white/95 dark:bg-[#181a20]/95 backdrop-blur-xl border-l border-slate-200 dark:border-white/10 z-40 flex flex-col shadow-floating animate-in slide-in-from-right duration-200 transition-colors duration-200">
       {/* Top Header */}
-      <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+      <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200 dark:border-white/10">
         <div className="flex items-center gap-2.5">
           <div className="p-2 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-500 text-white shadow-glow">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="font-semibold text-sm text-white flex items-center gap-1.5">
+            <h3 className="font-semibold text-sm text-slate-900 dark:text-white flex items-center gap-1.5">
               AI Studio
               {apiKey.trim() ? (
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30">
                   {provider === 'gemini' ? 'Gemini 2.5' : 'OpenAI'}
                 </span>
               ) : (
-                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-amber-500/15 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-500/30">
                   Offline templates (no AI model)
                 </span>
               )}
             </h3>
-            <p className="text-[11px] text-slate-400">Generate diagrams, syntheses, & study nodes</p>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">Generate diagrams, syntheses, & study nodes</p>
           </div>
         </div>
         <div className="flex items-center gap-1">
@@ -491,8 +491,8 @@ export const AiStudioPanel: React.FC = () => {
             title="Configure AI Model & API Key"
             className={`p-1.5 rounded-lg transition-colors ${
               showSettings || apiKey.trim()
-                ? 'text-sky-400 bg-sky-500/10'
-                : 'text-slate-400 hover:text-white hover:bg-white/10'
+                ? 'text-sky-600 dark:text-sky-400 bg-sky-500/10'
+                : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10'
             }`}
           >
             <Key className="w-4 h-4" />
@@ -500,7 +500,7 @@ export const AiStudioPanel: React.FC = () => {
           <button
             onClick={() => setAiStudioOpen(false)}
             aria-label="Close AI Studio"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
           >
             <X className="w-4 h-4" />
           </button>
@@ -509,10 +509,10 @@ export const AiStudioPanel: React.FC = () => {
 
       {/* Model & API Key Configuration Drawer */}
       {showSettings && (
-        <div className="px-5 py-3.5 bg-black/40 border-b border-white/10 text-xs space-y-3 animate-in fade-in duration-150">
+        <div className="px-5 py-3.5 bg-slate-50 dark:bg-black/40 border-b border-slate-200 dark:border-white/10 text-xs space-y-3 animate-in fade-in duration-150">
           <div>
-            <label className="block text-[11px] font-medium text-slate-300 mb-1.5 flex items-center gap-1.5">
-              <Cpu className="w-3.5 h-3.5 text-sky-400" />
+            <label className="block text-[11px] font-medium text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1.5">
+              <Cpu className="w-3.5 h-3.5 text-sky-500 dark:text-sky-400" />
               <span>Model Provider</span>
             </label>
             <div className="grid grid-cols-2 gap-2">
@@ -521,8 +521,8 @@ export const AiStudioPanel: React.FC = () => {
                 onClick={() => handleProviderChange('gemini')}
                 className={`py-1.5 px-2.5 rounded-xl border text-xs font-medium transition-colors ${
                   provider === 'gemini'
-                    ? 'bg-sky-500/20 text-sky-400 border-sky-500/40'
-                    : 'bg-white/[0.03] text-slate-400 border-white/5 hover:text-white'
+                    ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border-sky-500/40'
+                    : 'bg-white dark:bg-white/[0.03] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/5 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 Google Gemini
@@ -532,8 +532,8 @@ export const AiStudioPanel: React.FC = () => {
                 onClick={() => handleProviderChange('openai')}
                 className={`py-1.5 px-2.5 rounded-xl border text-xs font-medium transition-colors ${
                   provider === 'openai'
-                    ? 'bg-sky-500/20 text-sky-400 border-sky-500/40'
-                    : 'bg-white/[0.03] text-slate-400 border-white/5 hover:text-white'
+                    ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border-sky-500/40'
+                    : 'bg-white dark:bg-white/[0.03] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/5 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 OpenAI-compatible
@@ -542,10 +542,10 @@ export const AiStudioPanel: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-[11px] font-medium text-slate-300 mb-1 flex items-center justify-between">
+            <label className="block text-[11px] font-medium text-slate-700 dark:text-slate-300 mb-1 flex items-center justify-between">
               <span>API Key</span>
               {apiKey.trim() && (
-                <span className="text-[10px] text-emerald-400 font-mono">Configured</span>
+                <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono">Configured</span>
               )}
             </label>
             <input
@@ -553,13 +553,13 @@ export const AiStudioPanel: React.FC = () => {
               value={apiKey}
               onChange={(e) => handleApiKeyChange(e.target.value)}
               placeholder={provider === 'gemini' ? 'AIzaSy...' : 'sk-...'}
-              className="w-full bg-[#121316] border border-white/10 rounded-lg px-2.5 py-1.5 text-slate-200 outline-none focus:border-sky-500 text-xs font-mono"
+              className="w-full bg-white dark:bg-[#121316] border border-slate-200 dark:border-white/10 rounded-lg px-2.5 py-1.5 text-slate-900 dark:text-slate-200 outline-none focus:border-sky-500 text-xs font-mono"
             />
           </div>
 
           {provider === 'openai' && (
             <div>
-              <label className="block text-[11px] font-medium text-slate-300 mb-1">
+              <label className="block text-[11px] font-medium text-slate-700 dark:text-slate-300 mb-1">
                 Base URL (optional)
               </label>
               <input
@@ -567,13 +567,13 @@ export const AiStudioPanel: React.FC = () => {
                 value={baseUrl}
                 onChange={(e) => handleBaseUrlChange(e.target.value)}
                 placeholder="https://api.openai.com/v1"
-                className="w-full bg-[#121316] border border-white/10 rounded-lg px-2.5 py-1.5 text-slate-200 outline-none focus:border-sky-500 text-xs font-mono"
+                className="w-full bg-white dark:bg-[#121316] border border-slate-200 dark:border-white/10 rounded-lg px-2.5 py-1.5 text-slate-900 dark:text-slate-200 outline-none focus:border-sky-500 text-xs font-mono"
               />
             </div>
           )}
 
-          <div className="p-2 rounded-lg bg-white/[0.03] border border-white/5 text-[10px] text-slate-400 space-y-1">
-            <p className="text-amber-300/90 font-medium">
+          <div className="p-2 rounded-lg bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 text-[10px] text-slate-600 dark:text-slate-400 space-y-1">
+            <p className="text-amber-700 dark:text-amber-300/90 font-medium">
               Notice: API key is stored locally in this browser only.
             </p>
             <p>
@@ -584,13 +584,13 @@ export const AiStudioPanel: React.FC = () => {
       )}
 
       {/* Modes Bar */}
-      <div className="grid grid-cols-3 gap-1 p-3 border-b border-white/10 bg-white/[0.02]">
+      <div className="grid grid-cols-3 gap-1 p-3 border-b border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-white/[0.02]">
         <button
           onClick={() => setMode('mindmap')}
           className={`flex flex-col items-center gap-1 p-2 rounded-xl text-xs transition-colors ${
             mode === 'mindmap'
-              ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-white/5'
           }`}
         >
           <Network className="w-4 h-4" />
@@ -600,8 +600,8 @@ export const AiStudioPanel: React.FC = () => {
           onClick={() => setMode('flowchart')}
           className={`flex flex-col items-center gap-1 p-2 rounded-xl text-xs transition-colors ${
             mode === 'flowchart'
-              ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-white/5'
           }`}
         >
           <Workflow className="w-4 h-4" />
@@ -611,8 +611,8 @@ export const AiStudioPanel: React.FC = () => {
           onClick={() => setMode('studymodule')}
           className={`flex flex-col items-center gap-1 p-2 rounded-xl text-xs transition-colors ${
             mode === 'studymodule'
-              ? 'bg-sky-500/20 text-sky-400 border border-sky-500/40'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              ? 'bg-sky-500/15 dark:bg-sky-500/20 text-sky-600 dark:text-sky-400 border border-sky-500/40'
+              : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/60 dark:hover:bg-white/5'
           }`}
         >
           <BookOpen className="w-4 h-4" />
@@ -624,15 +624,15 @@ export const AiStudioPanel: React.FC = () => {
       <div className="flex-1 overflow-y-auto p-5 space-y-4">
         {/* Error Display Banner */}
         {errorMessage && (
-          <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-300 flex items-start gap-2.5 animate-in fade-in duration-150">
-            <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+          <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-xs text-red-700 dark:text-red-300 flex items-start gap-2.5 animate-in fade-in duration-150">
+            <AlertCircle className="w-4 h-4 text-red-500 dark:text-red-400 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
               <span className="font-semibold block mb-0.5">Generation Error</span>
-              <p className="text-[11px] text-red-200/90 leading-relaxed">{errorMessage}</p>
+              <p className="text-[11px] text-red-600 dark:text-red-200/90 leading-relaxed">{errorMessage}</p>
             </div>
             <button
               onClick={() => setErrorMessage(null)}
-              className="text-red-400 hover:text-red-200"
+              className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-200"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -641,7 +641,7 @@ export const AiStudioPanel: React.FC = () => {
 
         {/* Quick prompt templates */}
         <div>
-          <span className="text-[11px] font-medium text-slate-400 uppercase tracking-wider block mb-2">
+          <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-2">
             Suggested Research Prompts
           </span>
           <div className="space-y-1.5">
@@ -653,10 +653,10 @@ export const AiStudioPanel: React.FC = () => {
               <button
                 key={tmpl}
                 onClick={() => handleQuickTemplate(tmpl)}
-                className="w-full text-left px-3 py-1.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.08] text-[11px] text-slate-300 hover:text-white transition-colors truncate flex items-center justify-between"
+                className="w-full text-left px-3 py-1.5 rounded-lg bg-slate-100/80 dark:bg-white/[0.03] hover:bg-slate-200/80 dark:hover:bg-white/[0.08] text-[11px] text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-colors truncate flex items-center justify-between"
               >
                 <span className="truncate">{tmpl}</span>
-                <ChevronRight className="w-3 h-3 text-slate-500 flex-shrink-0" />
+                <ChevronRight className="w-3 h-3 text-slate-400 dark:text-slate-500 flex-shrink-0" />
               </button>
             ))}
           </div>
@@ -664,7 +664,7 @@ export const AiStudioPanel: React.FC = () => {
 
         {/* Prompt Input Area */}
         <div>
-          <label className="block text-[11px] font-medium text-slate-300 mb-1.5">
+          <label className="block text-[11px] font-medium text-slate-700 dark:text-slate-300 mb-1.5">
             Describe what diagram or notes to generate:
           </label>
           <textarea
@@ -672,7 +672,7 @@ export const AiStudioPanel: React.FC = () => {
             onChange={(e) => setPrompt(e.target.value)}
             rows={3}
             placeholder="e.g. Generate a concept map connecting quantum entanglement with biological energy transfer..."
-            className="w-full bg-[#121316] border border-white/10 rounded-xl p-3 text-xs text-slate-200 outline-none focus:border-sky-500 resize-none font-sans"
+            className="w-full bg-slate-50 dark:bg-[#121316] border border-slate-200 dark:border-white/10 rounded-xl p-3 text-xs text-slate-900 dark:text-slate-200 outline-none focus:border-sky-500 resize-none font-sans"
           />
         </div>
 
@@ -688,7 +688,7 @@ export const AiStudioPanel: React.FC = () => {
             </button>
             <button
               onClick={handleCancelGeneration}
-              className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 text-xs font-medium transition-colors"
+              className="py-2.5 px-3 rounded-xl bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-800 dark:text-slate-200 text-xs font-medium transition-colors"
             >
               Cancel
             </button>
@@ -708,25 +708,25 @@ export const AiStudioPanel: React.FC = () => {
 
         {/* Preview & Confirmation Step (Never silently overwrite!) */}
         {preview && (
-          <div className="p-4 rounded-2xl bg-white/[0.03] border border-sky-500/30 space-y-3 animate-in fade-in duration-150">
+          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-sky-500/30 space-y-3 animate-in fade-in duration-150">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-semibold text-sky-400 flex items-center gap-1.5">
+              <span className="text-xs font-semibold text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
                 <Check className="w-3.5 h-3.5" />
                 Generation Ready for Review
               </span>
-              <span className="text-[10px] text-slate-400 font-mono">
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
                 {preview.elements.length} elements
               </span>
             </div>
 
             <div>
-              <h4 className="text-xs font-medium text-white">{preview.title}</h4>
-              <p className="text-[11px] text-slate-400 mt-0.5">{preview.summary}</p>
+              <h4 className="text-xs font-medium text-slate-900 dark:text-white">{preview.title}</h4>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">{preview.summary}</p>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-black/40 border border-white/5 text-[11px] text-slate-300 space-y-1">
-              <div className="text-[10px] font-mono text-slate-400 flex items-center gap-1">
-                <Layers className="w-3 h-3 text-sky-400" />
+            <div className="p-2.5 rounded-xl bg-white dark:bg-black/40 border border-slate-200 dark:border-white/5 text-[11px] text-slate-700 dark:text-slate-300 space-y-1">
+              <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <Layers className="w-3 h-3 text-sky-500 dark:text-sky-400" />
                 <span>Target: Active Board ({getActiveBoard().title})</span>
               </div>
               <div>• Individual vector shapes ready to be positioned, resized & restyled.</div>
@@ -743,7 +743,7 @@ export const AiStudioPanel: React.FC = () => {
               </button>
               <button
                 onClick={() => setPreview(null)}
-                className="py-2 px-3 bg-white/10 hover:bg-white/15 text-slate-300 text-xs rounded-xl transition-colors"
+                className="py-2 px-3 bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/15 text-slate-700 dark:text-slate-300 text-xs rounded-xl transition-colors"
               >
                 Cancel
               </button>
