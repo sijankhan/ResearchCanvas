@@ -474,7 +474,7 @@ export const AiStudioPanel: React.FC = () => {
               AI Studio
               {apiKey.trim() ? (
                 <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                  {provider === 'gemini' ? 'Gemini 1.5' : 'OpenAI'}
+                  {provider === 'gemini' ? 'Gemini 2.5' : 'OpenAI'}
                 </span>
               ) : (
                 <span className="text-[10px] font-mono px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">

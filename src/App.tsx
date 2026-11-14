@@ -49,7 +49,7 @@ export const App: React.FC = () => {
 
         {/* 6. MiniMap Spatial Radar (Positioned above bottom bar) */}
         {isMiniMapOpen && (
-          <div className="fixed bottom-16 right-84 z-30">
+          <div className="fixed bottom-16 right-[336px] z-30">
             <MiniMap />
           </div>
         )}

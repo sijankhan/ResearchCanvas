@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   Sparkles,
   Undo2,
@@ -60,6 +60,11 @@ export const TopBar: React.FC<Props> = ({ onOpenShortcuts }) => {
   const [titleInput, setTitleInput] = useState(project.title);
   const [showExportMenu, setShowExportMenu] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setTitleInput(project.title);
+    setIsEditingTitle(false);
+  }, [project.id, project.title]);
 
   const camera = getCamera();
   const elements = getElements();

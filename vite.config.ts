@@ -11,8 +11,9 @@ export default defineConfig({
     },
   },
   server: {
+    host: '0.0.0.0',
     port: 3000,
-    open: false,
+    allowedHosts: true,
     watch: {
       ignored: ['**/*.zip', '**/dist/**', '**/dist-electron/**', '**/.git/**'],
     },
